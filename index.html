@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Вычисление e<sup>-x</sup></title>
+    <script type="text/javascript">
+        function factorial(n) {
+            var result = 1;
+            for (var i = 1; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        function calculateExponential() {
+            var x = Number(document.getElementById("x").value);
+            var terms = Number(document.getElementById("terms").value);
+            var sum = 0;
+
+            for (var n = 0; n <= terms; n++) {
+                sum += Math.pow(-1, n) * Math.pow(x, n) / factorial(n);
+            }
+
+            document.getElementById("result").textContent = "Результат: " + sum;
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <div>
+            <form onsubmit="event.preventDefault(); calculateExponential();">
+                <input id="x" type="number" step="any" placeholder="Введите x" required>
+                <input id="terms" type="number" placeholder="Введите количество членов ряда" required>
+                <input type="submit" value="Вычислить">
+            </form>
+            <p id="result"></p>
+        </div>
+    </section>
+</body>
+</html>
